@@ -71,8 +71,8 @@ export default function Home() {
               )}
             </div>
 
-            <h2 className="text-md font-sans font-bold mb-4">Vancouver(21)</h2>
-            <p className="text-gray-700 max-w-lg leading-relaxed">
+            <h2 className="text-md font-sans font-bold mb-4 self-start">Vancouver(21)</h2>
+            <p className="text-gray-700 max-w-lg leading-relaxed text-left">
               A breath of damp earth and rain-kissed leaves, evoking the
               serene stillness of a lush forest after spring rain. It captures the
               delicate interplay of birchwood and violet, enriched by the

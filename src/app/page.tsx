@@ -1,101 +1,88 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+    <div className="min-h-screen bg-[#FDF5E6] bg-[length:6px_6px] bg-[linear-gradient(to_right,rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.03)_1px,transparent_1px)]">
+      <main className="flex flex-col items-center justify-center p-8">
+        <div className="max-w-2xl mx-auto text-center mt-12">
+          <h1 className="text-3xl font-serif">aromatic</h1>
+          <p className="text-xs font-regular text-gray-600">a haphazard alchemy</p>
+          
+          <div className="mt-12 flex flex-col items-center">
+           <div className="flex items-center gap-8 mb-8 w-full">
+              <div className="text-sm text-left text-gray-600 grow">
+                <p className="mb-2 font-bold">v1.0 // 30 ml</p>
+                <p className="text-xs font-sans">EARTH  MUSK  PATCHOULI  <br />BIRCHWOOD  VIOLET  <br />SANDALWOOD  OAKMOSS</p>
+              </div>
+              <Image
+                src="/musk.png"
+                alt="musk"
+                width={100}
+                height={100}
+              />
+            </div>
+
+            <div 
+              className="relative mb-8"
+              onMouseMove={(e) => {
+                const rect = e.currentTarget.getBoundingClientRect();
+                setMousePosition({
+                  x: e.clientX - rect.left - 250,
+                  y: e.clientY - rect.top - 150,
+                });
+              }}
+              onMouseEnter={() => setIsHovering(true)}
+              onMouseLeave={() => {
+                setIsHovering(false);
+                setMousePosition({ x: 0, y: 0 });
+              }}
+            >
+              <Image 
+                src="/vancouver-21.png"
+                alt="Vancouver(21) perfume bottle"
+                width={200}
+                height={300}
+              />
+              {isHovering && (
+                <div
+                  className="absolute pointer-events-none"
+                  style={{
+                    left: mousePosition.x,
+                    top: mousePosition.y,
+                    width: '500px',
+                    height: '300px',
+                    zIndex: 10
+                  }}
+                >
+                  <Image
+                    src="/hiking-21.jpg"
+                    alt="hover image"
+                    width={1000}
+                    height={1000}
+                    className="w-full h-full object-cover transition-opacity duration-300"
+                  />
+                </div>
+              )}
+            </div>
+
+            <h2 className="text-md font-sans font-bold mb-4">Vancouver(21)</h2>
+            <p className="text-gray-700 max-w-lg leading-relaxed">
+              A breath of damp earth and rain-kissed leaves, evoking the
+              serene stillness of a lush forest after spring rain. It captures the
+              delicate interplay of birchwood and violet, enriched by the
+              grounding warmth of sandalwood and patchouli. It's a soft drift
+              through green canopies, where fresh blossoms awaken and soft
+              musk lingers in the air—a tranquil escape to nature's embrace.
+            </p>
+          </div>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }

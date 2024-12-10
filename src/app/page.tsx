@@ -76,9 +76,9 @@ export default function Home() {
               A breath of damp earth and rain-kissed leaves, evoking the
               serene stillness of a lush forest after spring rain. It captures the
               delicate interplay of birchwood and violet, enriched by the
-              grounding warmth of sandalwood and patchouli. It's a soft drift
+              grounding warmth of sandalwood and patchouli. It&apos;s a soft drift
               through green canopies, where fresh blossoms awaken and soft
-              musk lingers in the air—a tranquil escape to nature's embrace.
+              musk lingers in the air—a tranquil escape to nature&apos;s embrace.
             </p>
           </div>
         </div>
